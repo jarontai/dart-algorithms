@@ -3,14 +3,13 @@
 
 class ADTList<T> {
   int _length = 0;
-  int _pos = 0;
+  int _position = 0;
   List<T> _dataStore = <T>[];
 
   int get length => _length;
-  int get pos => _pos;
+  int get position => _position;
 
-
-  void append(T element) {
+  append(T element) {
     _length++;
     _dataStore.add(element);
   }
@@ -20,7 +19,7 @@ class ADTList<T> {
   }
 
   bool remove(T element) {
-    int foundAt = find(element);
+    var foundAt = find(element);
     if (foundAt > -1) {
       _dataStore.removeAt(foundAt);
       _length--;
@@ -29,9 +28,27 @@ class ADTList<T> {
     return false;
   }
 
+  bool insert(T element, T after) {
+    var insertPosition = find(after);
+    if (insertPosition > -1) {
+      _dataStore.insert(insertPosition, element);
+      _length++;
+      return true;
+    }
+    return false;
+  }
+
+  clear() {
+    _dataStore.clear();
+    _length = 0;
+    _position = 0;
+  }  
+
+  bool contains(T element) {
+    return _dataStore.contains(element);
+  }
+
   String toString() {
     return _dataStore.toString();
   }
-
-  // TODO
 }
