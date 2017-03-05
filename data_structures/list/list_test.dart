@@ -1,31 +1,31 @@
 import 'list.dart';
 
 main() {
-  ADTList<String> languages = new ADTList<String>();
-  languages.append('Java');
-  languages.append('JavaScript');
-  languages.append('Dart');
-  languages.append('C#');
-  languages.append('Ruby');
-  languages.append('PHP');
-  languages.front();
-  print(languages.getElement());
-  languages.next();
-  print(languages.getElement());
-  languages.next();
-  languages.next();
-  languages.prev();
-  print(languages.getElement());
-  print('************');
-  for (languages.front(); languages.position < languages.length - 1; languages.next()) {
-    print(languages.getElement());
+  var list = new ADTList<String>();
+  list.append('Java');
+  list.append('JavaScript');
+  list.append('Dart');
+  list.append('C#');
+  list.append('Ruby');
+  list.append('PHP');
+  list.front();
+  print(list.getElement());
+  list.next();
+  print(list.getElement());
+  list.next();
+  list.next();
+  list.prev();
+  print(list.getElement());
+
+  for (list.front(); list.position < list.length - 1; list.next()) {
+    print(list.getElement());
   }
-  print('************');
-  for (languages.end(); languages.position >= 0; languages.prev()) {
-    print(languages.getElement());
+
+  for (list.end(); list.position >= 0; list.prev()) {
+    print(list.getElement());
   }
-  print('************');  
-  print(languages);
-  languages.remove('JavaScript');
-  print(languages);
+
+  print(list);
+  list.remove('JavaScript');
+  print(list);
 }
