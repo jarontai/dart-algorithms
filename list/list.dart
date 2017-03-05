@@ -48,6 +48,34 @@ class ADTList<T> {
     return _dataStore.contains(element);
   }
 
+  front() {
+    _position = 0;
+  }
+
+  end() {
+    _position = _length - 1;
+  }
+
+  prev() {
+    if (_position > -1) {
+      _position--;
+    }
+  }
+
+  next() {
+    if (_position < _length - 1) {
+      _position++;
+    }
+  }
+
+  moveTo(int position) {
+    _position = position;
+  }
+
+  T getElement() {
+    return _dataStore[_position];
+  }
+
   String toString() {
     return _dataStore.toString();
   }
