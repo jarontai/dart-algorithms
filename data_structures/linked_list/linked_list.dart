@@ -1,5 +1,5 @@
 class LinkedList<T> {
-  final _LinkedNode<T> _head = new _LinkedNode<T>(null);
+  final _LinkedNode<T> _head = new _LinkedNode<T>.header();
   _LinkedNode<T> get head => _head;
 
   _LinkedNode<T> find(T element) {
@@ -45,8 +45,13 @@ class LinkedList<T> {
 }
 
 class _LinkedNode<T> {
+  final bool _header;
+  bool get isHeader => _header;
+
   T element;
   _LinkedNode next;
 
-  _LinkedNode(this.element);
+  _LinkedNode(this.element) : _header = false;
+
+  _LinkedNode.header() : _header = true;
 }
