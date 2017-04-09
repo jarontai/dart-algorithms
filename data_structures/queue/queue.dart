@@ -33,8 +33,6 @@ class Queue<T> {
   }
 
   String toString() {
-    return _dataStore.reduce((element) {
-      return element.toString();
-    });
+    return _dataStore.reversed.toList().toString();
   }
 }
