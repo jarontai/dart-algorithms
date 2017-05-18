@@ -1,7 +1,9 @@
 class Stack<T> {
   List<T> _dataStore = <T>[];
 
-  int get length => _dataStore.length;
+  int get size => _dataStore.length;
+
+  bool get isEmpty => _dataStore.isEmpty;
 
   push(T element) {
     _dataStore.insert(0, element);
