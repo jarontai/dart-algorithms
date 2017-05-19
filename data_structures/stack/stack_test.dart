@@ -5,7 +5,7 @@ main() {
   stack.push('Java');
   stack.push('JavaScript');
   stack.push('Dart');
-  print('Stack length ${stack.length}');
+  print('Stack size ${stack.size}');
   print(stack.peek());
 
   var poped = stack.pop();
@@ -14,7 +14,7 @@ main() {
   stack.push('Ruby');
   print(stack.peek());
   stack.clear();
-  print('Stack length ${stack.length}');
+  print('Stack size ${stack.size}');
   print(stack.peek());
   stack.push('Dart');
   print(stack.peek());
