@@ -1,7 +1,8 @@
 class Queue<T> {
   List<T> _dataStore = <T>[];
 
-  bool isEmpty() => _dataStore.isEmpty;
+  bool get isEmpty => _dataStore.isEmpty;
+  int get size => _dataStore.length;
 
   enqueue(T element) {
     _dataStore.add(element);
