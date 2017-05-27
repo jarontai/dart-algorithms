@@ -15,14 +15,14 @@ class Queue<T> {
     return null;
   }
 
-  T front() {
+  T get front {
     if (_dataStore.isNotEmpty) {
       return _dataStore.first;
     }
     return null;
   }
 
-  T back() {
+  T get end {
     if (_dataStore.isNotEmpty) {
       return _dataStore.last;
     }

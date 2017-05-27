@@ -8,6 +8,6 @@ main() {
   print(queue.toString());
   queue.dequeue();
   print(queue.toString());
-  print('Front of queue: ' + queue.front());
-  print('Back of queue: ' + queue.back());
+  print('Front of queue: ' + queue.front);
+  print('End of queue: ' + queue.end);
 }
