@@ -1,8 +1,9 @@
 class Queue<T> {
   List<T> _dataStore = <T>[];
 
-  bool get isEmpty => _dataStore.isEmpty;
   int get size => _dataStore.length;
+
+  bool get isEmpty => _dataStore.isEmpty;
 
   enqueue(T element) {
     _dataStore.add(element);
@@ -34,6 +35,6 @@ class Queue<T> {
   }
 
   String toString() {
-    return _dataStore.reversed.toList().toString();
+    return _dataStore.toString();
   }
 }

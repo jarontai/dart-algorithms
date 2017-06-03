@@ -26,4 +26,8 @@ class Stack<T> {
   clear() {
     _dataStore.clear();
   }
+
+  String toString() {
+    return _dataStore.toString();
+  }
 }
