@@ -3,29 +3,39 @@ class LinkedList<T> {
   _LinkedNode<T> get head => _head;
 
   _LinkedNode<T> find(T element) {
-    var currentNode = _head;
-    while (currentNode.element != element) {
-      currentNode = currentNode.next;
+    var current = _head;
+    while (current.element != element) {
+      current = current.next;
     }
-    return currentNode;
+    return current;
+  }
+
+  append(T element) {
+    var current = _head;
+    while (current.next != null) {
+      current = current.next;
+    }
+
+    var newElement = new _LinkedNode(element);
+    current.next = newElement;
   }
 
   insert(T afterElement, T newElement) {
-    var currentNode = _head;
+    var current = _head;
     if (afterElement != null) {
-      currentNode = find(afterElement);
+      current = find(afterElement);
     }
     var newNode = new _LinkedNode<T>(newElement);
-    newNode.next = currentNode.next;
-    currentNode.next = newNode;
+    newNode.next = current.next;
+    current.next = newNode;
   }
 
   _LinkedNode<T> _findPrevious(T element) {
-    var currentNode = _head;
-    while((currentNode.next != null) && (currentNode.next.element != element)) {
-      currentNode = currentNode.next;
+    var current = _head;
+    while((current.next != null) && (current.next.element != element)) {
+      current = current.next;
     }
-    return currentNode;
+    return current;
   }
 
   remove(T element) {
@@ -36,11 +46,12 @@ class LinkedList<T> {
   }
 
   display() {
-    var currentNode = _head;
-    while (currentNode.next != null) {
-      currentNode = currentNode.next;
-      print(currentNode.element);
+    var current = _head;
+    while (current.next != null) {
+      current = current.next;
+      print(current.element);
     }
+    print('');
   }
 }
 

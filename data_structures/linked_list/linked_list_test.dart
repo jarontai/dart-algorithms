@@ -2,13 +2,13 @@ import 'linked_list.dart';
 
 main() {
   var list = new LinkedList<String>();
-  list.insert(null, 'Java');
-  list.insert('Java', 'JavaScript');
-  list.insert('JavaScript', 'Dart');
-  list.insert('Dart', 'C#');
-  list.insert('C#', 'Ruby');
+  list.append('Java');
+  list.append('JavaScript');
+  list.append('C#');
+  list.append('Ruby');
   list.display();
-  print('');
-  list.remove('Dart');
+  list.insert('Java', 'Dart');
+  list.display();
+  list.remove('Ruby');
   list.display();
 }
