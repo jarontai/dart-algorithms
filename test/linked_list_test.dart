@@ -1,4 +1,5 @@
-import 'linked_list.dart';
+import 'package:dart_algorithms/dart_algorithms.dart';
+import 'package:test/test.dart';
 
 main() {
   var list = new LinkedList<String>();

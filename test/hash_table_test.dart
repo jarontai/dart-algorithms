@@ -1,4 +1,5 @@
-import 'hash_table.dart';
+import 'package:dart_algorithms/dart_algorithms.dart';
+import 'package:test/test.dart';
 
 main() {
   var hash = new HashTable<String, String>();

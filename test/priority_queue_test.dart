@@ -1,4 +1,5 @@
-import 'priority_queue.dart';
+import 'package:dart_algorithms/dart_algorithms.dart';
+import 'package:test/test.dart';
 
 main() {
   var queue = new PriorityQueue<String>();
