@@ -3,12 +3,21 @@ import 'package:test/test.dart';
 
 main() {
   var queue = new Queue<String>();
-  queue.enqueue('Android');
-  queue.enqueue('iOS');
-  queue.enqueue('Web');
-  print(queue.toString());
-  queue.dequeue();
-  print(queue.toString());
-  print('Front of queue: ' + queue.front);
-  print('End of queue: ' + queue.end);
+
+  setUp(() {
+    queue.enqueue('Android');
+    queue.enqueue('iOS');
+    queue.enqueue('Web');
+  });
+
+  test('queue operations', () {
+    expect(queue.front, equals('Android'));
+    expect(queue.end, equals('Web'));
+    queue.enqueue('fuchsia');
+    expect(queue.size, equals(4));
+    expect(queue.dequeue(), equals('Android'));
+    expect(queue.end, equals('fuchsia'));
+    queue.clear();
+    expect(queue.size, equals(0));
+  });
 }
