@@ -1,6 +1,5 @@
 library dart_algorithms;
 
-export 'src/data_structures/list/list.dart';
 export 'src/data_structures/stack/stack.dart';
 export 'src/data_structures/queue/queue.dart';
 export 'src/data_structures/queue/priority_queue.dart';

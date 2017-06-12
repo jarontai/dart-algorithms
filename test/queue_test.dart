@@ -13,10 +13,10 @@ main() {
   test('queue operations', () {
     expect(queue.front, equals('Android'));
     expect(queue.end, equals('Web'));
-    queue.enqueue('fuchsia');
+    queue.enqueue('Fuchsia');
     expect(queue.size, equals(4));
     expect(queue.dequeue(), equals('Android'));
-    expect(queue.end, equals('fuchsia'));
+    expect(queue.end, equals('Fuchsia'));
     queue.clear();
     expect(queue.size, equals(0));
   });
