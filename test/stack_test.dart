@@ -11,17 +11,16 @@ main() {
     stack.push('Dart');
   });
 
-  test('stack size and peek', () {
+  test('stack operations', () {
     expect(stack.size, equals(4));
     expect(stack.peek(), 'Dart');
-  });
-
-  test('stack pop and push', () {
     expect(stack.pop(), equals('Dart'));
     expect(stack.peek(), 'C#');
+    expect(stack.isEmpty, isFalse);
     stack.push('Ruby');
     expect(stack.pop(), 'Ruby');
     stack.clear();
+    expect(stack.isEmpty, isTrue);
     expect(stack.size, equals(0));
     expect(stack.peek(), isNull);
     stack.push('Dart');
