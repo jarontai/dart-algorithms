@@ -11,7 +11,7 @@ class LinkedList<T> {
 
   _LinkedNode<T> find(T element) {
     var current = _head;
-    while (current.element != element) {
+    while (current != null && current.element != element) {
       current = current.next;
     }
     return current;

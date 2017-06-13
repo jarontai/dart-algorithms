@@ -3,21 +3,21 @@ import 'package:test/test.dart';
 
 main() {
   var list = new LinkedList<String>();
-  list.append('Java');
-  list.append('JavaScript');
-  list.append('C#');
-  list.append('Ruby');
-  list.display();
 
-  list.insert('Java', 'Dart');
-  list.display();
+  setUp(() {
+    list.append('Java');
+    list.append('JavaScript');
+    list.append('C#');
+    list.append('Ruby');
+  });
 
-  list.remove('Ruby');
-  list.display();
-
-  print(list.indexOf(('Java')));
-  print('');
-
-  list.removeAt(3);
-  list.display();
+  test('linked list operations', () {
+    list.insert('Java', 'Dart');
+    expect(list.size, equals(5));
+    list.remove('Ruby');
+    expect(list.size, equals(4));
+    expect(list.indexOf('Dart'), equals(1));
+    list.removeAt(3);
+    expect(list.find('C#'), isNull);
+  });
 }
