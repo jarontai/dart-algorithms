@@ -3,19 +3,11 @@ class LinkedList<T> {
 
   _LinkedNode<T> get head => _head;
 
-  int _length = 0;
+  int _size = 0;
 
-  int get size => _length;
+  int get size => _size;
 
-  bool get isEmpty => _length == 0;
-
-  _LinkedNode<T> find(T element) {
-    var current = _head;
-    while (current != null && current.element != element) {
-      current = current.next;
-    }
-    return current;
-  }
+  bool get isEmpty => _size == 0;
 
   append(T element) {
     var current = _head;
@@ -25,34 +17,47 @@ class LinkedList<T> {
 
     var newElement = new _LinkedNode(element);
     current.next = newElement;
-    _length++;
+    _size++;
   }
 
-  insert(T afterElement, T newElement) {
-    var current = _head;
-    if (afterElement != null) {
-      current = find(afterElement);
+  T removeAt(int position) {
+    if (position > -1 && position < _size) {
+      var index = 0;
+      var previous = _head;
+      var current = _head.next;
+      while (current != null) {
+        if (index == position) {
+          _size--;
+          previous.next = current.next;
+          return current.element;
+        }
+        index++;
+        previous = current;
+        current = current.next;
+      }
     }
-    var newNode = new _LinkedNode<T>(newElement);
-    newNode.next = current.next;
-    current.next = newNode;
-    _length++;
+    return null;
   }
 
-  _LinkedNode<T> _findPreviousNode(T element) {
-    var current = _head;
-    while((current.next != null) && (current.next.element != element)) {
-      current = current.next;
+  bool insert(int position, T newElement) {
+    if (position > -1 && position < _size) {
+      var index = 0;
+      var previous = _head;
+      var current = _head.next;
+      while (current != null) {
+        if (index == position) {
+          var newNode = new _LinkedNode<T>(newElement);
+          newNode.next = previous.next;
+          previous.next = newNode;
+          _size++;
+          return true;
+        }
+        index++;
+        previous = current;
+        current = current.next;
+      }
     }
-    return current;
-  }
-
-  remove(T element) {
-    var previous = _findPreviousNode(element);
-    if (previous.next != null) {
-      previous.next = previous.next.next;
-      _length--;
-    }
+    return false;
   }
 
   int indexOf(T element) {
@@ -68,22 +73,9 @@ class LinkedList<T> {
     return -1;
   }
 
-  T removeAt(int position) {
-    if (position > -1 && position < _length) {
-      var index = 0;
-      var previous = _head;
-      var current = _head.next;
-      while (current != null) {
-        if (index == position) {
-          previous.next = current.next;
-          return current.element;
-        }
-        index++;
-        previous = current;
-        current = current.next;
-      }
-    }
-    return null;
+  T remove(T element) {
+    var index = indexOf(element);
+    return removeAt(index);
   }
 
   display() {

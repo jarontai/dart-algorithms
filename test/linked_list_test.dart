@@ -12,12 +12,13 @@ main() {
   });
 
   test('linked list operations', () {
-    list.insert('Java', 'Dart');
+    list.insert(0, 'Dart');
+    list.insert(3, 'Go');
+    expect(list.size, equals(6));
+    list.remove('JavaScript');
     expect(list.size, equals(5));
-    list.remove('Ruby');
-    expect(list.size, equals(4));
-    expect(list.indexOf('Dart'), equals(1));
-    list.removeAt(3);
-    expect(list.find('C#'), isNull);
+    expect(list.indexOf('Dart'), equals(0));
+    expect(list.indexOf('Go'), equals(2));
+    expect(list.isEmpty, isFalse);
   });
 }
