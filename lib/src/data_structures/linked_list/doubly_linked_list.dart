@@ -3,9 +3,9 @@ class DoublyLinkedList<T> {
 
   _LinkedNode<T> _tail;
 
-  T get head => _head.next?.element;
+  _LinkedNode<T> get head => _head.next;
 
-  T get tail => _tail?.element ?? _head.next?.element;
+  _LinkedNode<T> get tail => _tail ?? _head.next;
 
   int _size = 0;
 
@@ -74,14 +74,14 @@ class DoublyLinkedList<T> {
   }
 
   int indexOf(T element) {
-    int index = -1;
-    var current = _head;
-    while (current.next != null) {
-      index++;
-      if (current.next.element == element) {
+    int index = 0;
+    var current = _head.next;
+    while (current != null) {
+      if (current.element == element) {
         return index;
       }
       current = current.next;
+      index++;
     }
     return -1;
   }
@@ -89,15 +89,6 @@ class DoublyLinkedList<T> {
   T remove(T element) {
     var index = indexOf(element);
     return removeAt(index);
-  }
-
-  display() {
-    var current = _head;
-    while (current.next != null) {
-      current = current.next;
-      print(current.element);
-    }
-    print('');
   }
 }
 

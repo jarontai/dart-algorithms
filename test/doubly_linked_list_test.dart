@@ -12,8 +12,8 @@ main() {
   });
 
   test('linked list operations', () {
-    expect(list.head, equals('Java'));
-    expect(list.tail, equals('Ruby'));
+    expect(list.head?.element, equals('Java'));
+    expect(list.tail?.element, equals('Ruby'));
     expect(list.insert(4, 'PHP'), isFalse);
     expect(list.insert(0, 'Dart'), isTrue);
     expect(list.insert(3, 'Go'), isTrue);
@@ -23,8 +23,8 @@ main() {
     expect(list.indexOf('Dart'), equals(0));
     expect(list.indexOf('Go'), equals(2));
     expect(list.isEmpty, isFalse);
-    expect(list.head, equals('Dart'));
+    expect(list.head?.element, equals('Dart'));
     expect(list.append('PHP'), isNull);
-    expect(list.tail, equals('PHP'));
+    expect(list.tail?.element, equals('PHP'));
   });
 }
