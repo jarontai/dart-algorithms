@@ -5,21 +5,26 @@ main() {
   var list = new DoublyLinkedList<String>();
 
   setUp(() {
-    list.insert(null, 'Java');
-    list.insert('Java', 'JavaScript');
-    list.insert('JavaScript', 'Dart');
-    list.insert('Dart', 'C#');
-    list.insert('C#', 'Ruby');
+    list.append('Java');
+    list.append('JavaScript');
+    list.append('C#');
+    list.append('Ruby');
   });
 
-  test('doubly linked list operations', () {
-    // TODO
-    // list.insert('Java', 'Dart');
-    // expect(list.size, equals(5));
-    // list.remove('Ruby');
-    // expect(list.size, equals(4));
-    // expect(list.indexOf('Dart'), equals(1));
-    // list.removeAt(3);
-    // expect(list.find('C#'), isNull);
+  test('linked list operations', () {
+    expect(list.head, equals('Java'));
+    expect(list.tail, equals('Ruby'));
+    expect(list.insert(4, 'PHP'), isFalse);
+    expect(list.insert(0, 'Dart'), isTrue);
+    expect(list.insert(3, 'Go'), isTrue);
+    expect(list.size, equals(6));
+    expect(list.remove('JavaScript'), equals('JavaScript'));
+    expect(list.size, equals(5));
+    expect(list.indexOf('Dart'), equals(0));
+    expect(list.indexOf('Go'), equals(2));
+    expect(list.isEmpty, isFalse);
+    expect(list.head, equals('Dart'));
+    expect(list.append('PHP'), isNull);
+    expect(list.tail, equals('PHP'));
   });
 }

@@ -1,7 +1,7 @@
 class LinkedList<T> {
   final _LinkedNode<T> _head = new _LinkedNode<T>.header();
 
-  _LinkedNode<T> get head => _head;
+  T get head => _head.next?.element;
 
   int _size = 0;
 

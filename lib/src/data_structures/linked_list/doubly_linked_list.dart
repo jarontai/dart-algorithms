@@ -1,57 +1,103 @@
 class DoublyLinkedList<T> {
   final _LinkedNode<T> _head = new _LinkedNode<T>.header();
-  _LinkedNode<T> get head => _head;
 
-  _LinkedNode<T> find(T element) {
-    var currentNode = _head;
-    while (currentNode.element != element) {
-      currentNode = currentNode.next;
+  _LinkedNode<T> _tail;
+
+  T get head => _head.next?.element;
+
+  T get tail => _tail?.element ?? _head.next?.element;
+
+  int _size = 0;
+
+  int get size => _size;
+
+  bool get isEmpty => _size == 0;
+
+  append(T element) {
+    var current = _head;
+    while (current.next != null) {
+      current = current.next;
     }
-    return currentNode;
+
+    var newElement = new _LinkedNode(element);
+    current.next = newElement;
+    newElement.prev = current;
+    _size++;
+    _tail = newElement;
   }
 
-  _LinkedNode<T> findLast() {
-    var currentNode = _head;
-    while (currentNode.next != null) {
-      currentNode = currentNode.next;
-    }
-    return currentNode;
-  }
-
-  insert(T afterElement, T newElement) {
-    var currentNode = _head;
-    if (afterElement != null) {
-      currentNode = find(afterElement);
-    }
-    var newNode = new _LinkedNode<T>(newElement);
-    newNode.next = currentNode.next;
-    newNode.prev = currentNode;
-    currentNode.next = newNode;
-  }
-
-  remove(T element) {
-    var currentNode = find(element);
-    if (currentNode.prev != null) {
-      currentNode.prev.next = currentNode.next;
-      currentNode.next.prev = currentNode.prev;
-      currentNode.prev = null;
-      currentNode.next = null;
-    }
-  }
-
-  display({bool reverse : false}) {
-    var currentNode = reverse ? findLast() : _head;
-    if (reverse) {
-      while (currentNode.prev != null) {
-        print(currentNode.element);
-        currentNode = currentNode.prev;
-      }
-    } else {
-      while (currentNode.next != null) {
-        currentNode = currentNode.next;
-        print(currentNode.element);
+  T removeAt(int position) {
+    if (position > -1 && position < _size) {
+      var index = 0;
+      var previous = _head;
+      var current = _head.next;
+      while (current != null) {
+        if (index == position) {
+          _size--;
+          previous.next = current.next;
+          current.next?.prev = previous;
+          return current.element;
+        }
+        index++;
+        previous = current;
+        current = current.next;
       }
     }
+    return null;
+  }
+
+  bool insert(int position, T newElement) {
+    if (position > -1 && position < _size) {
+      var index = 0;
+      var previous = _head;
+      var current = _head.next;
+      while (current != null) {
+        if (index == position) {
+          var newNode = new _LinkedNode<T>(newElement);
+          newNode.next = previous.next;
+          newNode.prev = previous;
+          previous.next = newNode;
+          _size++;
+
+          if (newNode.next == null) {
+            _tail = newNode;
+          }
+
+          return true;
+        }
+        index++;
+        previous = current;
+        current = current.next;
+      }
+    }
+    return false;
+  }
+
+  int indexOf(T element) {
+    int index = -1;
+    var current = _head;
+    while (current.next != null) {
+      index++;
+      if (current.next.element == element) {
+        return index;
+      }
+      current = current.next;
+    }
+    return -1;
+  }
+
+  T remove(T element) {
+    var index = indexOf(element);
+    return removeAt(index);
+  }
+
+  display() {
+    var current = _head;
+    while (current.next != null) {
+      current = current.next;
+      print(current.element);
+    }
+    print('');
   }
 }
 
@@ -60,8 +106,8 @@ class _LinkedNode<T> {
   bool get isHeader => _header;
 
   T element;
-  _LinkedNode next;
   _LinkedNode prev;
+  _LinkedNode next;
 
   _LinkedNode(this.element) : _header = false;
 
