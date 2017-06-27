@@ -1,27 +1,87 @@
+import '../linked_list/linked_list.dart';
+
 class HashTable<K, V> {
-  Map<int, V> _dataStore = <int, V>{};
+  Map<int, LinkedList<_HashItem<K, V>>> _dataStore =
+      <int, LinkedList<_HashItem<K, V>>>{};
 
   int _hash(K key) {
-    var keyStr = key.toString();
     var hash = 0;
+    var keyStr = key.toString();
     for (var i = 0; i < keyStr.toString().length; i++) {
       hash += keyStr.codeUnitAt(i);
     }
     return hash % 37;
   }
 
-  void put(K key, V value) {
-    var position = _hash(key);
-    _dataStore[position] = value;
-    print('$position - $key');
+  int _betterHash(K key) {
+    var hash = 5381;
+    var keyStr = key.toString();
+    for (var i = 0; i < keyStr.length; i++) {
+      hash = hash * 33 + keyStr.codeUnitAt(i);
+    }
+    return hash % 1013;
   }
 
-  V remove(K key) {
+  void put(K key, V value) {
     var position = _hash(key);
-    return _dataStore.remove(position);
+    if (!_dataStore.containsKey(position)) {
+      _dataStore[position] = new LinkedList<_HashItem<K, V>>();
+    }
+    _dataStore[position].append(new _HashItem(key, value));
+  }
+
+  bool remove(K key) {
+    var position = _hash(key);
+    if (_dataStore.containsKey(position)) {
+      var list = _dataStore[position];
+      var current = list.head;
+      while (current != null) {
+        if (current?.element?.key == key) {
+          list.remove(current.element);
+          return true;
+        }
+        current = current.next;
+      }
+    }
+    return false;
   }
 
   V get(K key) {
-    return _dataStore[_hash(key)];
+    var position = _hash(key);
+    if (_dataStore.containsKey(position)) {
+      var list = _dataStore[position];
+      var current = list.head;
+      while (current != null) {
+        if (current?.element?.key == key) {
+          return current.element.value;
+        }
+        current = current.next;
+      }
+    }
+    return null;
+  }
+}
+
+class _HashItem<K, V> {
+  K key;
+  V value;
+
+  _HashItem(this.key, this.value);
+
+  int get hashCode {
+    int result = 17;
+    result = 37 * result + key.hashCode;
+    result = 37 * result + value.hashCode;
+    return result;
+  }
+
+  bool operator ==(other) {
+    if (other is! _HashItem) return false;
+    _HashItem valuePair = other;
+    return (valuePair.key == key && valuePair.value == value);
+  }
+
+  String toString() {
+    return '[$key - $value]';
   }
 }

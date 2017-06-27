@@ -5,16 +5,24 @@ main() {
   var hash = new HashTable<String, String>();
 
   setUp(() {
-    hash.put('Gandalf', 'gandalf@gmail.com');
-    hash.put('John', 'johnsnow@gmail.com');
-    hash.put('Tyrion', 'tyrion@gmail.com');
-    hash.put('Aaron', 'aaron@gmail.com');
+    hash.put('Gandalf', 'gandalf@email.com');
+    hash.put('John', 'johnsnow@email.com');
+    hash.put('Tyrion', 'tyrion@email.com');
+    hash.put('Aaron', 'aaron@email.com');
+    hash.put('Donnie', 'donnie@email.com');
+    hash.put('Ana', 'ana@email.com');
+    hash.put('Jonathan', 'jonathan@email.com');
+    hash.put('Jamie', 'jamie@email.com');
+    hash.put('Sue', 'sue@email.com');
   });
 
   test('hash table operations', () {
-    // TODO
-    print(hash.get('Tyrion'));
-    print(hash.get('Aaron'));
-    print(hash.get('Joe'));
+    expect(hash.get('Tyrion'), equals('tyrion@email.com'));
+    expect(hash.get('Aaron'), equals('aaron@email.com'));
+    expect(hash.get('Joe'), isNull);
+    expect(hash.remove('Donnie'), isTrue);
+    expect(hash.remove('Joe'), isFalse);
+    expect(hash.get('Donnie'), isNull);
+    expect(hash.get('Jonathan'), equals('jonathan@email.com'));
   });
 }
