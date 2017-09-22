@@ -1,7 +1,7 @@
 class LinkedList<T> {
-  final _LinkedNode<T> _head = new _LinkedNode<T>.header();
+  final LinkedNode<T> _head = new LinkedNode<T>.header();
 
-  _LinkedNode<T> get head => _head.next;
+  LinkedNode<T> get head => _head.next;
 
   int _size = 0;
 
@@ -15,7 +15,7 @@ class LinkedList<T> {
       current = current.next;
     }
 
-    var newElement = new _LinkedNode(element);
+    var newElement = new LinkedNode(element);
     current.next = newElement;
     _size++;
   }
@@ -46,7 +46,7 @@ class LinkedList<T> {
       var current = _head.next;
       while (current != null) {
         if (index == position) {
-          var newNode = new _LinkedNode<T>(newElement);
+          var newNode = new LinkedNode<T>(newElement);
           newNode.next = previous.next;
           previous.next = newNode;
           _size++;
@@ -79,14 +79,14 @@ class LinkedList<T> {
   }
 }
 
-class _LinkedNode<T> {
+class LinkedNode<T> {
   final bool _header;
   bool get isHeader => _header;
 
   T element;
-  _LinkedNode next;
+  LinkedNode next;
 
-  _LinkedNode(this.element) : _header = false;
+  LinkedNode(this.element) : _header = false;
 
-  _LinkedNode.header() : _header = true;
+  LinkedNode.header() : _header = true;
 }

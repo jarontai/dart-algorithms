@@ -1,12 +1,12 @@
 class PriorityQueue<T> {
-  List<_QueueItem<T>> _dataStore = <_QueueItem<T>>[];
+  List<QueueItem<T>> _dataStore = <QueueItem<T>>[];
 
   int get size => _dataStore.length;
 
   bool get isEmpty => _dataStore.isEmpty;
 
   enqueue(T item, int priority) {
-    _QueueItem queueItem = new _QueueItem(item, priority);
+    QueueItem queueItem = new QueueItem(item, priority);
     bool added = false;
     for (int i = 0; i < _dataStore.length; i++) {
       if (priority < _dataStore[i].priority) {
@@ -50,11 +50,11 @@ class PriorityQueue<T> {
   }
 }
 
-class _QueueItem<T> {
+class QueueItem<T> {
   T item;
   int priority;
 
-  _QueueItem(this.item, this.priority);
+  QueueItem(this.item, this.priority);
 
   String toString() {
     return '$item - $priority';

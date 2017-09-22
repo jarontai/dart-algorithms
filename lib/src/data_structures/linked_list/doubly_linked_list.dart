@@ -1,11 +1,11 @@
 class DoublyLinkedList<T> {
-  final _LinkedNode<T> _head = new _LinkedNode<T>.header();
+  final DoublyLinkedNode<T> _head = new DoublyLinkedNode<T>.header();
 
-  _LinkedNode<T> _tail;
+  DoublyLinkedNode<T> _tail;
 
-  _LinkedNode<T> get head => _head.next;
+  DoublyLinkedNode<T> get head => _head.next;
 
-  _LinkedNode<T> get tail => _tail ?? _head.next;
+  DoublyLinkedNode<T> get tail => _tail ?? _head.next;
 
   int _size = 0;
 
@@ -19,7 +19,7 @@ class DoublyLinkedList<T> {
       current = current.next;
     }
 
-    var newElement = new _LinkedNode(element);
+    var newElement = new DoublyLinkedNode(element);
     current.next = newElement;
     newElement.prev = current;
     _size++;
@@ -53,7 +53,7 @@ class DoublyLinkedList<T> {
       var current = _head.next;
       while (current != null) {
         if (index == position) {
-          var newNode = new _LinkedNode<T>(newElement);
+          var newNode = new DoublyLinkedNode<T>(newElement);
           newNode.next = previous.next;
           newNode.prev = previous;
           previous.next = newNode;
@@ -92,15 +92,15 @@ class DoublyLinkedList<T> {
   }
 }
 
-class _LinkedNode<T> {
+class DoublyLinkedNode<T> {
   final bool _header;
   bool get isHeader => _header;
 
   T element;
-  _LinkedNode prev;
-  _LinkedNode next;
+  DoublyLinkedNode prev;
+  DoublyLinkedNode next;
 
-  _LinkedNode(this.element) : _header = false;
+  DoublyLinkedNode(this.element) : _header = false;
 
-  _LinkedNode.header() : _header = true;
+  DoublyLinkedNode.header() : _header = true;
 }

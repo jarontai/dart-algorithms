@@ -1,8 +1,8 @@
 import '../linked_list/linked_list.dart';
 
 class HashTable<K, V> {
-  Map<int, LinkedList<_HashItem<K, V>>> _dataStore =
-      <int, LinkedList<_HashItem<K, V>>>{};
+  Map<int, LinkedList<HashItem<K, V>>> _dataStore =
+      <int, LinkedList<HashItem<K, V>>>{};
 
   int _hash(K key) {
     var hash = 0;
@@ -25,9 +25,9 @@ class HashTable<K, V> {
   void put(K key, V value) {
     var position = _hash(key);
     if (!_dataStore.containsKey(position)) {
-      _dataStore[position] = new LinkedList<_HashItem<K, V>>();
+      _dataStore[position] = new LinkedList<HashItem<K, V>>();
     }
-    _dataStore[position].append(new _HashItem(key, value));
+    _dataStore[position].append(new HashItem(key, value));
   }
 
   bool remove(K key) {
@@ -62,11 +62,11 @@ class HashTable<K, V> {
   }
 }
 
-class _HashItem<K, V> {
+class HashItem<K, V> {
   K key;
   V value;
 
-  _HashItem(this.key, this.value);
+  HashItem(this.key, this.value);
 
   int get hashCode {
     int result = 17;
@@ -76,8 +76,8 @@ class _HashItem<K, V> {
   }
 
   bool operator ==(other) {
-    if (other is! _HashItem) return false;
-    _HashItem valuePair = other;
+    if (other is! HashItem) return false;
+    HashItem valuePair = other;
     return (valuePair.key == key && valuePair.value == value);
   }
 
