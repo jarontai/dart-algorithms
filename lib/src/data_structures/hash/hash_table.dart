@@ -13,14 +13,14 @@ class HashTable<K, V> {
     return hash % 37;
   }
 
-  int _betterHash(K key) {
-    var hash = 5381;
-    var keyStr = key.toString();
-    for (var i = 0; i < keyStr.length; i++) {
-      hash = hash * 33 + keyStr.codeUnitAt(i);
-    }
-    return hash % 1013;
-  }
+  // int _betterHash(K key) {
+  //   var hash = 5381;
+  //   var keyStr = key.toString();
+  //   for (var i = 0; i < keyStr.length; i++) {
+  //     hash = hash * 33 + keyStr.codeUnitAt(i);
+  //   }
+  //   return hash % 1013;
+  // }
 
   void put(K key, V value) {
     var position = _hash(key);

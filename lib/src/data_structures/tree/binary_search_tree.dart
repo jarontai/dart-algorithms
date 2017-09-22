@@ -107,13 +107,12 @@ class BinarySearchTree<T extends Comparable> {
     }
 
     var compareResult = searchKey.compareTo(node.key);
-    if (compareResult == 0) {
-      return true;
-    } else if (compareResult < 0) {
+    if (compareResult < 0) {
       return _search(node.left, searchKey);
     } else if (compareResult > 0) {
       return _search(node.right, searchKey);
     }
+    return true;
   }
 
   remove(T key) {
@@ -126,7 +125,13 @@ class BinarySearchTree<T extends Comparable> {
     }
 
     var compareResult = searchKey.compareTo(node.key);
-    if (compareResult == 0) {
+    if (compareResult < 0) {
+      node.left = _remove(node.left, searchKey);
+      return node;
+    } else if (compareResult > 0) {
+      node.right = _remove(node.right, searchKey);
+      return node;
+    } else {
       // leaf node
       if (node.left == null && node.right == null) {
         node = null;
@@ -146,12 +151,6 @@ class BinarySearchTree<T extends Comparable> {
       var minNode = _findMinNode(node.right);
       node.key = minNode.key;
       node.right = _remove(node.right, minNode.key);
-      return node;
-    } else if (compareResult < 0) {
-      node.left = _remove(node.left, searchKey);
-      return node;
-    } else if (compareResult > 0) {
-      node.right = _remove(node.right, searchKey);
       return node;
     }
   }
