@@ -1,8 +1,8 @@
 class BinarySearchTree<T extends Comparable> {
-  _TreeNode<T> root;
+  TreeNode<T> root;
 
   insert(T key) {
-    var newNode = new _TreeNode<T>(key);
+    var newNode = new TreeNode<T>(key);
 
     if (root == null) {
       root = newNode;
@@ -11,7 +11,7 @@ class BinarySearchTree<T extends Comparable> {
     }
   }
 
-  _insertNode(_TreeNode node, _TreeNode newNode) {
+  _insertNode(TreeNode node, TreeNode newNode) {
     if (newNode.key < node.key) {
       if (node.left == null) {
         node.left = newNode;
@@ -31,7 +31,7 @@ class BinarySearchTree<T extends Comparable> {
     _inOrderTraverse(root, callback);
   }
 
-  _inOrderTraverse(_TreeNode node, void callback(T key)) {
+  _inOrderTraverse(TreeNode node, void callback(T key)) {
     if (node != null) {
       _inOrderTraverse(node.left, callback);
       if (callback !=null) {
@@ -45,7 +45,7 @@ class BinarySearchTree<T extends Comparable> {
     _preOrderTraverse(root, callback);
   }
 
-  _preOrderTraverse(_TreeNode node, void callback(T key)) {
+  _preOrderTraverse(TreeNode node, void callback(T key)) {
     if (node != null) {
       if (callback !=null) {
         callback(node.key);
@@ -59,7 +59,7 @@ class BinarySearchTree<T extends Comparable> {
     _postOrderTraverse(root, callback);
   }
 
-  _postOrderTraverse(_TreeNode node, void callback(T key)) {
+  _postOrderTraverse(TreeNode node, void callback(T key)) {
     if (node != null) {
       _inOrderTraverse(node.left, callback);
       _inOrderTraverse(node.right, callback);
@@ -73,7 +73,7 @@ class BinarySearchTree<T extends Comparable> {
     return _min(root);
   }
 
-  T _min(_TreeNode node) {
+  T _min(TreeNode node) {
     if (node != null) {
       while (node != null && node.left != null) {
         node = node.left;
@@ -87,7 +87,7 @@ class BinarySearchTree<T extends Comparable> {
     return _max(root);
   }
 
-  T _max(_TreeNode node) {
+  T _max(TreeNode node) {
     if (node != null) {
       while (node != null && node.right != null) {
         node = node.right;
@@ -101,7 +101,7 @@ class BinarySearchTree<T extends Comparable> {
     return _search(root, key);
   }
 
-  bool _search(_TreeNode node, T searchKey) {
+  bool _search(TreeNode node, T searchKey) {
     if (node == null) {
       return false;
     }
@@ -119,7 +119,7 @@ class BinarySearchTree<T extends Comparable> {
     root = _remove(root, key);
   }
 
-  _TreeNode _remove(_TreeNode node, T searchKey) {
+  TreeNode _remove(TreeNode node, T searchKey) {
     if (node == null) {
       return null;
     }
@@ -155,7 +155,7 @@ class BinarySearchTree<T extends Comparable> {
     }
   }
 
-  _TreeNode _findMinNode(_TreeNode node) {
+  TreeNode _findMinNode(TreeNode node) {
     while (node != null && node.left != null) {
       node = node.left;
     }
@@ -163,10 +163,10 @@ class BinarySearchTree<T extends Comparable> {
   }
 }
 
-class _TreeNode<T> {
+class TreeNode<T> {
   T key;
-  _TreeNode left;
-  _TreeNode right;
+  TreeNode left;
+  TreeNode right;
 
-  _TreeNode(this.key);
+  TreeNode(this.key);
 }
