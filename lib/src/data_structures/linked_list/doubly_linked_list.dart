@@ -1,11 +1,8 @@
 class DoublyLinkedList<T> {
-  final DoublyLinkedNode<T> _head = new DoublyLinkedNode<T>.header();
+  DoublyNode<T> head;
+  DoublyNode<T> tail;
 
-  DoublyLinkedNode<T> _tail;
-
-  DoublyLinkedNode<T> get head => _head.next;
-
-  DoublyLinkedNode<T> get tail => _tail ?? _head.next;
+  DoublyLinkedList();
 
   int _size = 0;
 
@@ -14,68 +11,90 @@ class DoublyLinkedList<T> {
   bool get isEmpty => _size == 0;
 
   append(T element) {
-    var current = _head;
-    while (current.next != null) {
-      current = current.next;
+    var node = new DoublyNode(element);
+    var current = head;
+    if (head == null) {
+      head = node;
+    } else {
+      current = head;
+      while (current.next != null) {
+        current = current.next;
+      }
+      current.next = node;
     }
-
-    var newElement = new DoublyLinkedNode(element);
-    current.next = newElement;
-    newElement.prev = current;
     _size++;
-    _tail = newElement;
+    tail = node;
   }
 
   T removeAt(int position) {
     if (position > -1 && position < _size) {
       var index = 0;
-      var previous = _head;
-      var current = _head.next;
-      while (current != null) {
-        if (index == position) {
-          _size--;
-          previous.next = current.next;
-          current.next?.prev = previous;
-          return current.element;
+      var previous = head;
+      var current = head;
+      if (position == 0) {
+        head = current.next;
+        if (_size == 1) {
+          tail = null;
+        } else {
+          head.prev = null;
         }
-        index++;
-        previous = current;
-        current = current.next;
+      } else if (position == _size - 1) {
+        current = tail;
+        tail = current.prev;
+        tail.next = null;
+      } else {
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        previous.next = current.next;
+        current.next.prev = previous;
       }
+      _size--;
+      return current.element;
     }
     return null;
   }
 
-  bool insert(int position, T newElement) {
-    if (position > -1 && position < _size) {
+  bool insert(int position, T element) {
+    if (position >= 0 && position < _size) {
+      var node = new DoublyNode(element);
       var index = 0;
-      var previous = _head;
-      var current = _head.next;
-      while (current != null) {
-        if (index == position) {
-          var newNode = new DoublyLinkedNode<T>(newElement);
-          newNode.next = previous.next;
-          newNode.prev = previous;
-          previous.next = newNode;
-          _size++;
-
-          if (newNode.next == null) {
-            _tail = newNode;
-          }
-
-          return true;
+      var previous = head;
+      var current = head;
+      if (position == 0) {
+        if (head == null) {
+          head = node;
+          tail = node;
+        } else {
+          node.next = current;
+          current.prev = node;
+          head = node;
         }
-        index++;
-        previous = current;
-        current = current.next;
+      } else if (position == _size) {
+        current = tail;
+        current.next = node;
+        node.prev = current;
+        tail = node;
+      } else {
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        node.next = current;
+        current.prev = node;
+        previous.next = node;
+        node.prev = previous;
       }
+      _size++;
+      return true;
     }
     return false;
   }
 
   int indexOf(T element) {
-    int index = 0;
-    var current = _head.next;
+    var index = 0;
+    var current = head;
     while (current != null) {
       if (current.element == element) {
         return index;
@@ -90,17 +109,22 @@ class DoublyLinkedList<T> {
     var index = indexOf(element);
     return removeAt(index);
   }
+
+  String toString() {
+    var current = head;
+    var string = '';
+    while (current != null) {
+      string += current.element.toString() + (current.next != null ? '\n' : '');
+      current = current.next;
+    }
+    return string;
+  }
 }
 
-class DoublyLinkedNode<T> {
-  final bool _header;
-  bool get isHeader => _header;
-
+class DoublyNode<T> {
   T element;
-  DoublyLinkedNode prev;
-  DoublyLinkedNode next;
+  DoublyNode next;
+  DoublyNode prev;
 
-  DoublyLinkedNode(this.element) : _header = false;
-
-  DoublyLinkedNode.header() : _header = true;
+  DoublyNode(this.element);
 }
