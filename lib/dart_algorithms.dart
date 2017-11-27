@@ -8,3 +8,6 @@ export 'src/data_structures/linked_list/doubly_linked_list.dart';
 export 'src/data_structures/hash/hash_table.dart';
 export 'src/data_structures/tree/binary_search_tree.dart';
 export 'src/data_structures/graph/graph.dart';
+
+export 'src/algorithms/sorting.dart';
+export 'src/algorithms/searching.dart';
