@@ -1,7 +1,9 @@
 dart-algorithms
 ================
 
-`dart-algorithms` - implementations of different algorithms and data structures with `Dartlang`.
+Dart版本的数据结构与算法
+
+`dart-algorithms` - implementations of different data structures and algorithms with `Dart`.
 
 ## Contents
 
@@ -12,8 +14,13 @@ dart-algorithms
 * [linked list](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/data_structures/linked_list)
 * [hash](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/data_structures/hash)
 * [tree](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/data_structures/tree)
+* [graph](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/data_structures/graph)
 
-### Run Test
+### Algorithms
+
+* [sorting](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/sorting.dart)
+
+## Run Test
 
     pub run test
 
