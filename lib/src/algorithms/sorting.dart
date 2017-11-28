@@ -21,3 +21,15 @@ selectionSort(List<int> arr, Function swap) {
     swap(arr, outer, min);
   }
 }
+
+insertionSort(List<int> arr, Function swap) {
+  for (var outer = 1; outer < arr.length; outer++) {
+    for (var inner = outer; inner > 0; inner--) {
+      if (arr[inner] < arr[inner - 1]) {
+        swap(arr, inner, inner - 1);
+      } else {
+        break;
+      }
+    }
+  }
+}

@@ -61,4 +61,8 @@ main() {
   test('selection sort', () {
     new TestBed(20, selectionSort);
   });
+
+  test('insertion sort', () {
+    new TestBed(20, insertionSort);
+  });
 }
