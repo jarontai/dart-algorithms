@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:dart_algorithms/dart_algorithms.dart' show bubbleSort;
+import 'package:dart_algorithms/dart_algorithms.dart';
 import 'package:test/test.dart';
 
 class TestBed {
@@ -56,5 +56,9 @@ class TestBed {
 main() {
   test('bubble sort', () {
     new TestBed(20, bubbleSort);
+  });
+
+  test('selection sort', () {
+    new TestBed(20, selectionSort);
   });
 }

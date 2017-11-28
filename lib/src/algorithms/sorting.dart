@@ -8,3 +8,16 @@ bubbleSort(List<int> arr, Function swap) {
     }
   }
 }
+
+selectionSort(List<int> arr, Function swap) {
+  var min;
+  for (var outer = 0; outer < arr.length - 1; outer++) {
+    min = outer;
+    for (var inner = outer + 1; inner <= arr.length - 1; inner++) {
+      if (arr[inner] < arr[min]) {
+        min = inner;
+      }
+    }
+    swap(arr, outer, min);
+  }
+}
