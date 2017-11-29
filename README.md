@@ -18,11 +18,10 @@ Dart版本的数据结构与算法
 
 ### Algorithms
 
-* [sorting](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/sorting.dart)
+* [basic sorting](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/sorting/basic.dart)
+* [advanced sorting](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/sorting/advanced.dart)
 
-## Run Test
+## Run Tests
 
     pub run test
 
-
-More to come ...

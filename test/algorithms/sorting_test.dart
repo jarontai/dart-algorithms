@@ -54,15 +54,24 @@ class TestBed {
 }
 
 main() {
-  test('bubble sort', () {
-    new TestBed(20, bubbleSort);
+
+  group('Basic sort -', () {
+    test('bubble sort', () {
+      new TestBed(20, bubbleSort);
+    });
+
+    test('selection sort', () {
+      new TestBed(20, selectionSort);
+    });
+
+    test('insertion sort', () {
+      new TestBed(20, insertionSort);
+    });
   });
 
-  test('selection sort', () {
-    new TestBed(20, selectionSort);
-  });
-
-  test('insertion sort', () {
-    new TestBed(20, insertionSort);
+  group('Advanced sort -', () {
+    test('shell sort', () {
+      new TestBed(20, shellSort);
+    });
   });
 }

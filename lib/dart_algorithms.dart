@@ -9,5 +9,5 @@ export 'src/data_structures/hash/hash_table.dart';
 export 'src/data_structures/tree/binary_search_tree.dart';
 export 'src/data_structures/graph/graph.dart';
 
-export 'src/algorithms/sorting.dart';
-export 'src/algorithms/searching.dart';
+export 'src/algorithms/sorting/basic.dart';
+export 'src/algorithms/sorting/advanced.dart';
