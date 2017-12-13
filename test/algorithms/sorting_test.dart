@@ -4,13 +4,13 @@ import 'package:dart_algorithms/dart_algorithms.dart';
 import 'package:test/test.dart';
 
 class TestBed {
-  List dataStore;
+  List<int> dataStore;
   int length;
   int times;
   Function sortFn;
   bool auto;
 
-  TestBed(this.length, this.sortFn, {this.auto = true, this.times = 1}) {
+  TestBed(this.length, this.sortFn, {this.auto = false, this.times = 1}) {
     if (auto) {
       sort();
     }
@@ -20,22 +20,11 @@ class TestBed {
     DateTime start = new DateTime.now();
     for (var i = 0; i < times; i++) {
       prepareData();
-      if (times == 1) {
-        print('Before sort:');
-        print(this);
-      }
-
       sortFn(dataStore, swap);
+    }
 
-      if (times == 1) {
-        print('After sort:');
-        print(this);
-      }
-    }
-    if (times > 1) {
-      var costTime = new DateTime.now().difference(start).inMilliseconds;
-      print('$times times cost: $costTime ms');
-    }
+    var costTime = new DateTime.now().difference(start).inMilliseconds;
+    print('${dataStore.length} items costs : $costTime ms');
   }
 
   clear() {
@@ -59,6 +48,20 @@ class TestBed {
     arr[index2] = temp;
   }
 
+  bool check() {
+    sort();
+
+    var prev = -1;
+    for (var i in dataStore) {
+      if (i >= prev) {
+        prev = i;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
   String toString() {
     return dataStore.toString();
   }
@@ -68,29 +71,29 @@ main() {
 
   group('Basic sort -', () {
     test('bubble sort', () {
-      new TestBed(1000, bubbleSort, times: 1000);
+      expect(new TestBed(30000, bubbleSort).check(), equals(true));
     });
 
     test('selection sort', () {
-      new TestBed(500, selectionSort, times: 10000);
+      expect(new TestBed(30000, selectionSort).check(), equals(true));
     });
 
     test('insertion sort', () {
-      new TestBed(500, insertionSort, times: 10000);
+      expect(new TestBed(30000, insertionSort).check(), equals(true));
     });
   });
 
   group('Advanced sort -', () {
     test('shell sort', () {
-      new TestBed(500, shellSort, times: 10000);
+      expect(new TestBed(30000, shellSort).check(), equals(true));
     });
 
     test('merge sort', () {
-      new TestBed(500, mergeSort, times: 10000);
+      expect(new TestBed(30000, mergeSort).check(), equals(true));
     });
 
     test('quick sort', () {
-      new TestBed(500, quickSort, times: 10000);
+      expect(new TestBed(30000, quickSort).check(), equals(true));
     });
   });
 }
