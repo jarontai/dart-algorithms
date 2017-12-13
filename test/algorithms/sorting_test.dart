@@ -10,20 +10,31 @@ class TestBed {
   Function sortFn;
   bool auto;
 
-  TestBed(this.length, this.sortFn, [this.auto = true, this.times = 1]) {
+  TestBed(this.length, this.sortFn, {this.auto = true, this.times = 1}) {
     if (auto) {
       sort();
     }
   }
 
   sort() {
+    DateTime start = new DateTime.now();
     for (var i = 0; i < times; i++) {
       prepareData();
-      print('Before sort:');
-      print(this);
+      if (times == 1) {
+        print('Before sort:');
+        print(this);
+      }
+
       sortFn(dataStore, swap);
-      print('After sort:');
-      print(this);
+
+      if (times == 1) {
+        print('After sort:');
+        print(this);
+      }
+    }
+    if (times > 1) {
+      var costTime = new DateTime.now().difference(start).inMilliseconds;
+      print('$times times cost: $costTime ms');
     }
   }
 
@@ -57,21 +68,25 @@ main() {
 
   group('Basic sort -', () {
     test('bubble sort', () {
-      new TestBed(20, bubbleSort);
+      new TestBed(1000, bubbleSort, times: 1000);
     });
 
     test('selection sort', () {
-      new TestBed(20, selectionSort);
+      new TestBed(500, selectionSort, times: 10000);
     });
 
     test('insertion sort', () {
-      new TestBed(20, insertionSort);
+      new TestBed(500, insertionSort, times: 10000);
     });
   });
 
   group('Advanced sort -', () {
     test('shell sort', () {
-      new TestBed(20, shellSort);
+      new TestBed(500, shellSort, times: 10000);
+    });
+
+    test('merge sort', () {
+      new TestBed(500, mergeSort, times: 10000);
     });
   });
 }
