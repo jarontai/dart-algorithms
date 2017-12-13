@@ -25,4 +25,5 @@ More to come
 
 ## Run Tests
 
-    pub run test
+    pub run test test/data_structures
+    pub run test test/algorithms

@@ -20,9 +20,8 @@ class TestBed {
     DateTime start = new DateTime.now();
     for (var i = 0; i < times; i++) {
       prepareData();
-      sortFn(dataStore, swap);
+      dataStore = sortFn(dataStore, swap);
     }
-
     var costTime = new DateTime.now().difference(start).inMilliseconds;
     print('${dataStore.length} items costs : $costTime ms');
   }
@@ -50,7 +49,6 @@ class TestBed {
 
   bool check() {
     sort();
-
     var prev = -1;
     for (var i in dataStore) {
       if (i >= prev) {

@@ -14,6 +14,8 @@ shellSort(List<int> arr, Function swap) {
 
     gap = (gap / 2).floor();
   }
+
+  return arr;
 }
 
 mergeSort(List<int> arr, Function swap) {
@@ -47,7 +49,7 @@ mergeSort(List<int> arr, Function swap) {
     return merge(sort(left), sort(right));
   }
 
-  sort(arr);
+  return sort(arr);
 }
 
 quickSort(List<int> arr, Function swap) {
@@ -88,4 +90,6 @@ quickSort(List<int> arr, Function swap) {
   }
 
   sort(arr, 0, arr.length - 1);
+
+  return arr;
 }

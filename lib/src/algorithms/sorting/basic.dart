@@ -6,6 +6,7 @@ bubbleSort(List<int> arr, Function swap) {
       }
     }
   }
+  return arr;
 }
 
 selectionSort(List<int> arr, Function swap) {
@@ -19,6 +20,7 @@ selectionSort(List<int> arr, Function swap) {
     }
     swap(arr, min, i);
   }
+  return arr;
 }
 
 insertionSort(List<int> arr, Function swap) {
@@ -32,4 +34,5 @@ insertionSort(List<int> arr, Function swap) {
     }
     arr[j] = temp;
   }
+  return arr;
 }
