@@ -88,5 +88,9 @@ main() {
     test('merge sort', () {
       new TestBed(500, mergeSort, times: 10000);
     });
+
+    test('quick sort', () {
+      new TestBed(500, quickSort, times: 10000);
+    });
   });
 }

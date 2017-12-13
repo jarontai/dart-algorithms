@@ -47,5 +47,45 @@ mergeSort(List<int> arr, Function swap) {
     return merge(sort(left), sort(right));
   }
 
-  return sort(arr);
+  sort(arr);
+}
+
+quickSort(List<int> arr, Function swap) {
+  partition(List<int> arr, int left, int right) {
+    var pivot = arr[((right + left) / 2).floor()];
+    var i = left;
+    var j = right;
+
+    while (i <= j) {
+      while (arr[i] < pivot) {
+        i++;
+      }
+      while (arr[j] > pivot) {
+        j--;
+      }
+      if (i <= j) {
+        swap(arr, i, j);
+        i++;
+        j--;
+      }
+    }
+    return i;
+  }
+
+  sort(List<int> arr, int left, int right) {
+    var index;
+    if (arr.length > 1) {
+      index = partition(arr, left, right);
+
+      if (left < index - 1) {
+        sort(arr, left, index - 1);
+      }
+
+      if (index < right) {
+        sort(arr, index, right);
+      }
+    }
+  }
+
+  sort(arr, 0, arr.length - 1);
 }
