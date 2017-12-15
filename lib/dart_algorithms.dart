@@ -11,3 +11,4 @@ export 'src/data_structures/graph/graph.dart';
 
 export 'src/algorithms/sorting/basic.dart';
 export 'src/algorithms/sorting/advanced.dart';
+export 'src/algorithms/searching.dart';
