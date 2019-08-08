@@ -6,7 +6,7 @@ class PriorityQueue<T> {
   bool get isEmpty => _dataStore.isEmpty;
 
   enqueue(T item, int priority) {
-    QueueItem queueItem = new QueueItem(item, priority);
+    QueueItem queueItem = new QueueItem<T>(item, priority);
     bool added = false;
     for (int i = 0; i < _dataStore.length; i++) {
       if (priority < _dataStore[i].priority) {

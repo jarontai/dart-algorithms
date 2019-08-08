@@ -1,6 +1,8 @@
 dart-algorithms
 ================
 
+[![Build status](https://travis-ci.org/jarontai/dart-algorithms.svg)](https://travis-ci.org/jarontai/dart-algorithms)
+
 `dart-algorithms` - Data structures and algorithms with `Dart`.
 
 Dart版本的数据结构与算法
@@ -22,7 +24,6 @@ Dart版本的数据结构与算法
 * [advanced sorting](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/sorting/advanced.dart)
 * [searching](https://github.com/jarontai/dart-algorithms/tree/master/lib/src/algorithms/searching.dart)
 
-## Run Tests
+## Test
 
-    pub run test test/data_structures
-    pub run test test/algorithms
+    pub run test
